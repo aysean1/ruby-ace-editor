@@ -46,4 +46,5 @@ CLOBBER.include "lib/ace.js"
   CLOBBER.include "lib/ace/#{mod}"
 end
 
-task :default => ["lib/ace/version.rb", "lib/ace.js", :keybinding, :mode, :theme, :worker]
+task :copy => ["lib/ace/version.rb", "lib/ace.js", :keybinding, :mode, :theme, :worker]
+task :default => [:clobber, :copy]
