@@ -24,7 +24,7 @@ task :build => "tmp/ace" do
 end
 
 def fix_bom(path)
-  data = File.read(path).gsub(/\xEF\xBB\xBF/, "")
+  data = File.open(path, 'r:binary') { |f| f.read }.gsub(/\xEF\xBB\xBF/, "")
   File.open(path, 'w') { |f| f.write(data) }
 end
 
