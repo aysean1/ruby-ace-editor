@@ -1,3 +1,3 @@
 module Ace
-  VERSION = "0.2.0.1273"
+  VERSION = "0.2.0.1289"
 end
