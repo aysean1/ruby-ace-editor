@@ -16,10 +16,10 @@ task :build => "tmp/ace" do
     sh "node ./Makefile.dryice.js -nc"
 
     # Strip invalid UTF8 BOMs
+    # grep -rl $'\xEF\xBB\xBF' build
     # https://github.com/ajaxorg/ace/issues/828
     fix_bom "build/src/mode-luapage.js"
     fix_bom "build/src-noconflict/mode-luapage.js"
-    sh "grep -rl $'\xEF\xBB\xBF' build"
   end
 end
 
