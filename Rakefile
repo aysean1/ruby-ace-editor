@@ -14,18 +14,7 @@ task :build => "tmp/ace" do
     sh "git pull"
     sh "npm install"
     sh "node ./Makefile.dryice.js -nc"
-
-    # Strip invalid UTF8 BOMs
-    # grep -rl $'\xEF\xBB\xBF' build
-    # https://github.com/ajaxorg/ace/issues/828
-    fix_bom "build/src/mode-luapage.js"
-    fix_bom "build/src-noconflict/mode-luapage.js"
   end
-end
-
-def fix_bom(path)
-  data = File.open(path, 'r:binary') { |f| f.read }.gsub(/\xEF\xBB\xBF/, "")
-  File.open(path, 'w') { |f| f.write(data) }
 end
 
 file "lib/ace/version.rb" => :build do |f|
